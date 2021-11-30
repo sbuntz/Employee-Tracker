@@ -50,7 +50,6 @@ function prompt() {
 
         .then(answers => {
 
-            //how to get index from choices array?
             switch (answers.selection) {
 
                 case "View All Employees": viewAllEmployees();
@@ -120,19 +119,9 @@ function updateEmployeesRole() {
 
     let query = `
     SELECT 
-        e.id, 
-        CONCAT(e.first_name, " ", e.last_name) AS name, 
-        r.title, 
-        d.name AS department, 
-        r.salary, 
-        CONCAT(m.first_name, ' ', m.last_name) AS manager
-    FROM employees e
-        LEFT JOIN roles r
-        ON e.role_id = r.id
-        LEFT JOIN departments d
-        ON d.id = r.department_id
-        LEFT JOIN employees m
-        ON m.id = e.manager_id`;
+        id, 
+        CONCAT(first_name, " ", last_name) AS name
+    FROM employees `;
 
     connection.query(query, (err, res) => {
         if (err) throw err;
@@ -180,14 +169,13 @@ function changeEmployeeRole(employee, role) {
 
         .then(answers => {
 
-            // this seems a bit clunky, is there a better way?
             let chosenRole = answers.roleSelect.replace(/^([^:]+\:){3}/, '').trim();
             let chosenEmployee = answers.employeeSelect.replace(/^([^:]+\:){2}/, '').trim();
 
-            console.log(chosenRole);
-            console.log(chosenEmployee);
-
             let query = `UPDATE employees SET role_id = ? WHERE id = ?`;
+
+
+            
             connection.query(query, [chosenRole, chosenEmployee], (err, res) => {
                 if (err) throw err;
                 prompt();
@@ -198,7 +186,7 @@ function changeEmployeeRole(employee, role) {
 
 function addNewEmployee() {
 
-    let query = `SELECT id, title, salary FROM roles`;
+    let query = `SELECT * FROM roles`;
 
     connection.query(query, (err, res) => {
         if (err) throw err;
@@ -425,8 +413,6 @@ function addRoleDetails(departments) {
 
         .then((answers) => {
 
-            // console.log(answers.departmentID);
-
             connection.query("INSERT INTO roles SET ?", {
 
                 title: answers.roleName,
@@ -439,8 +425,6 @@ function addRoleDetails(departments) {
             });
         });
 }
-
-
 
 function deleteRole() {
 
@@ -455,7 +439,7 @@ function deleteRole() {
             return `Role: ${obj.title} ID: ${obj.id}`;
         });
 
-        removeSelectedDepartment(role);
+        removeSelectedRole(role);
     });
 
 }
@@ -487,10 +471,6 @@ function removeSelectedRole(role) {
 
 
 function exit() {
-
-    connection.end();
-
+connection.end();
 }
 
-
-/*  attempting to get async to work */
