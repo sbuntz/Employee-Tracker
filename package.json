@@ -4,7 +4,8 @@
   "description": "a command-line applicaton to manage a complany's employee database using Node.js, Inquirer and MySQL",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -12,14 +13,13 @@
   },
   "author": "Stefanie Buntz",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sbuntz/Employee-Tracker/issues"
-  },
-  "homepage": "https://github.com/sbuntz/Employee-Tracker#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "inquirer": "^8.2.0",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.3.3"
+    "console.table": "^0.10.0",
+    "inquirer": "^8.1.0",
+    "mysql2": "^2.2.5",
+    "util": "^0.12.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
