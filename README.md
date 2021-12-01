@@ -4,7 +4,7 @@
 
 ## Description 
 The purpose of this app is to generate a quick and easier way for a business to manager their employees, roles and departments. 
-The link to the demo can be viewed here: https://watch.screencastify.com/v/3wiiqzyYy90ynVm6tFGS
+The link to the demo can be viewed here: https://watch.screencastify.com/v/Nps4QZvlIgoGJrcl6Lk0
 
 ## Table of Contents
 * [Installation](#installation)
