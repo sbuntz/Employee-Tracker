@@ -1,10 +1,10 @@
 USE company_db
 
 INSERT INTO departments (name)
-VALUES ("Engineering"),
+VALUES ("Sales"),
+       ("Engineering"),
        ("Finance"),
-       ("Legal"),
-       ("Sales");
+       ("Legal");
 
 INSERT INTO roles (department_id, title, salary)
 VALUES (1, "Sales Lead", 10000),
